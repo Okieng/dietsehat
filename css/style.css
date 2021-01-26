@@ -44,7 +44,7 @@ body {
 
 .btn {
   float: right;
-  border-radius: 50%;
+  border-radius: 0px;
 }
 
 .card-kalori {
