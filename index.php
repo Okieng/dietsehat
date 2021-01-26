@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100&display=swap" rel="stylesheet">
-    <title>Login | Diet Sehat</title>
+    <title>Login | Diet Sehat YOGI KONTOL</title>
 </head>
 <style>
     body {
