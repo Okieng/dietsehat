@@ -37,6 +37,10 @@ $cemilan = tampil("SELECT * FROM cemilan WHERE id_user = $id");
 
       display: none;
     }
+
+    .btn {
+      border-radius: 0px;
+    }
   </style>
 </head>
 
