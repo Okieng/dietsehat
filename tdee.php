@@ -12,14 +12,20 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <title>Document</title>
 </head>
+<style>
+    body {
+        background-color: #7AC53F;
+        color: #fff;
+    }
+</style>
 
 <body>
     <div class="text-center">
-        <h1 style="margin-top:10%;">Jumlah Tdee</h1>
-        <p>$jumlahkalori</p>
-        <p>Kurangi 500 kalori untuk menurunkan 0.5 kg per minggu</p>
+        <h1 style="margin-top:10%;">Jumlah Tdee</h1><br>
+        <h1>$jumlahkalori</h1><br>
+        <h4>Kurangi 500 kalori untuk menurunkan 0.5 kg per minggu</h4><br>
 
-        <button class="btn"> Masuk ke halaman Home</button>
+        <a href="makanan.php"><button class="btn btn-outline-primary"> Masuk ke halaman Home</button></a>
     </div>
 </body>
 <!-- Optional JavaScript -->
