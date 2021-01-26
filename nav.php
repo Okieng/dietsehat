@@ -12,7 +12,7 @@
             <li class="nav-item">
                 <a href="bb.php" class="nav-link">
                     <figure class="figure">
-                        <i class="fa fa-balance-scale fa-2x text-white" aria-hidden="true"></i>
+                        <img src="img/weight.png" class="figure-img img-fluid rounded" alt="...">
                         <figcaption class="figure-caption">Berat Badan</figcaption>
                     </figure>
                 </a>

@@ -54,83 +54,21 @@ $cemilan = tampil("SELECT * FROM cemilan WHERE id_user = $id");
 
 
 
-  <section class="jenis-diet">
-    <div class="container">
-      <div class="owl-carousel">
-        <div class="item card bg-dark text-white">
-          <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Diet Sehat</h5>
-            <p class="card-text">Tinggi Protein</p>
-            <p class="card-text">2100 Kalori</p>
-          </div>
-        </div>
-        <div class="item card bg-dark text-white">
-          <img src="img/2.jpg" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">OlahRaga</h5>
-            <p class="card-text">Cukup olahraga sehari selama 30 menit dapat menjaga tubuh ideal dan menurunkan berat badan</p>
-            <p class="card-text">Last updated 3 mins ago</p>
-          </div>
-        </div>
-        <div class="item card bg-dark text-white">
-          <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Info</h5>
-            <p class="card-text">Hindari memakan ber karbohidrat berlebihan Saat diet karna dapat membantu proses diet</p>
-            <p class="card-text">Last updated 3 mins ago</p>
-          </div>
-        </div>
-        <div class="card bg-dark text-white">
-          <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text">Last updated 3 mins ago</p>
-          </div>
-        </div>
-        <div class="card bg-dark text-white">
-          <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text">Last updated 3 mins ago</p>
-          </div>
-        </div>
-        <div class="card bg-dark text-white">
-          <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text">Last updated 3 mins ago</p>
-          </div>
-        </div>
-        <div class="card bg-dark text-white">
-          <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text">Last updated 3 mins ago</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
+
 
   <div class="container">
-    <hr>
-  </div>
-  <div class="container">
     <div class="row">
+
       <div class="col-md-12">
 
         <div class="row mt-5">
           <div class="col-md-12">
-
+            <h5>$kebutuhankalori</h5>
             <div class="card">
               <div class="card-body">
                 <?php $total = 0;
-                $jum = 1200;
+                $jum = 0;
                 foreach ($hasil as $h) {
                   $total += $h['kal'];
                 }
@@ -170,7 +108,7 @@ $cemilan = tampil("SELECT * FROM cemilan WHERE id_user = $id");
             <div class="card">
               <div class="card-body">
                 <?php $total = 0;
-                $jum = 1200;
+                $jum = 0;
                 foreach ($siang as $h) {
                   $total += $h['kal'];
                 }
@@ -219,7 +157,7 @@ $cemilan = tampil("SELECT * FROM cemilan WHERE id_user = $id");
                     <hr>
                     <div class="kalori mt-2">
                       <?php $total = 0;
-                      $jum = 1200;
+                      $jum = 0;
                       foreach ($malam as $h) {
                         $total += $h['kal'];
                       }
@@ -259,7 +197,7 @@ $cemilan = tampil("SELECT * FROM cemilan WHERE id_user = $id");
                     <hr>
                     <div class="kalori mt-2">
                       <?php $total = 0;
-                      $jum = 1200;
+                      $jum = 0;
                       foreach ($cemilan as $h) {
                         $total += $h['kal'];
                       }

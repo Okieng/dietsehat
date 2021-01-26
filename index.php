@@ -1,7 +1,28 @@
 <?php
+session_start();
 require 'function.php';
-?>
 
+if (isset($_POST['submit'])) {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $valid = mysqli_query($conn, "SELECT * FROM user where email = '$email'");
+
+    if (mysqli_num_rows($valid) > 0) {
+        $row = mysqli_fetch_assoc($valid);
+        if ($password === $row['password']) {
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['nama'] = $row['nama'];
+            header('Location: makanan.php');
+        } else {
+            $valid = true;
+        }
+    } else {
+        echo "ga ada";
+    }
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -15,123 +36,66 @@ require 'function.php';
 
     <!-- Material Design for Bootstrap CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100&display=swap" rel="stylesheet">
+    <title>Login | Diet Sehat</title>
 </head>
 <style>
-    .inputan {
-        margin-top: 3%;
-    }
-
     body {
         background-color: #7AC53F;
     }
 
-    .custom-file-control,
-    .form-control,
-    .is-focused .custom-file-control,
-    .is-focused .form-control {
-        background-image: linear-gradient(0deg, #7AC53F 2px, rgba(0, 150, 136, 0) 0), linear-gradient(0deg, rgba(0, 0, 0, .26) 1px, transparent 0);
-    }
-
-
-
-    .btn {
-        color: #fff !important;
-        border-color: #fff !important
-    }
-
-    .form {
+    .login {
         background-color: #fff;
-        color: #7AC53F;
-
-    }
-
-    .custom-file-control,
-    .form-control {
-        display: inline-block !important;
-
+        width: 30%;
+        margin-top: 5%;
     }
 
     .btn {
         background-color: #7AC53F !important;
         color: #fff !important;
+    }
 
+    #circle {
+        width: 25%;
+    }
+
+    .custom-file-control,
+    .form-control {
+        display: inline-block !important;
+        width: 70% !important;
+    }
+
+    h1 {
+        font-family: 'Kanit', sans-serif;
     }
 </style>
 
 <body>
-
-    <div class="container mt-5">
+    <div class="container login">
         <div class="row">
-            <div class="col-12">
-                <div class="text-center">
-                    <h3 class="mb-4" style="color:#fff;">Perhitungan Body Muscle Index</h3>
+
+            <?php if (isset($valid)) : ?>
+                <div class="alert alert-danger" role="alert">
+                    Password Salah
                 </div>
-                <form class="form" action="" method="post"><br><br>
-                    <div class="container">
-                        <div class="row input-atas">
-                            <div class="col-2">
-                                <label for="input">Tinggi Badan</label>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" name="height" class="form-control"="Tinggi Badan">
-                            </div>
-                        </div>
-                        <div class="row inputan">
-                            <div class="col-2">
-                                <label for="input">Berat Badan</label>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" name="weight" class="form-control"="Berat Badan">
-                            </div>
-                        </div>
-                        <div class="row inputan">
-                            <div class="col-2">
-                                <label for="input">Umur</label>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" name="age" class="form-control"="Umur">
-                            </div>
-                        </div>
-                        <div class="row inputan">
-                            <div class="col-2">
-                                <label for="input">Jenis Kelamin</label>
-                            </div>
-                            <div class="col-10">
-                                <select name="gender" class="form-control">
-                                    <option>Pria</option>
-                                    <option>Wanita</option>
-                                </select>
 
-                            </div>
-                        </div>
-                        <br>
+
+            <?php endif; ?>
+            <div class="col-12 text-center">
+                <form class="form" method="post" action="">
+                    <h1 class="mt-5 mb-5">Diet Sehat</h1>
+                    <div class="form-group mt-2">
+
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+
                     </div>
-                    <div class="text-center">
-                        <input type="Submit" value="Calculate" class="btn btn-outline-success">
+                    <div class="form-group">
+
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
-                    <?php
-                    $age = $_POST['age'];
-                    $weight = $_POST['weight'];
-                    $height = $_POST['height'];
-                    $calories = "0.0215183";
-                    $gender = $_POST['gender'];
-                    switch ($gender) {
-                        case 'Wanita':
-                            $gender = 655 + (9.6 * $weight) + (1.8 * $height) - (4.7 * $age);
-                            echo "<p>Your estimated daily metabolic rate is $gender </p>";
-                            echo "<p>This means that you need rouhgly $gender calories a day to maintain your current weight.</p>";
-
-                            break;
-                        case 'Pria':
-                            $gender = 66 + (13.7 * $weight) + (5 * $height) - (6.8 * $age);
-                            echo "<p>Your estimated daily metabolic rate is $gender </p>";
-                            echo "<p>This means that you need rouhgly $gender calories a day to maintain your current weight.</p>";
-                    }
-
-
-                    ?>
+                    <button type="submit" name="submit" class="btn btn-primary mb-5">Login</button>
+                    <small id="emailHelp" class="form-text text-muted">Belum punya akun? <a href="register.php">Daftar Sekarang</a></small>
                 </form>
             </div>
         </div>
