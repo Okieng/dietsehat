@@ -1,379 +1,208 @@
-<?php  
+<?php 
 require 'function.php';
 
-$hasil = tampil("SELECT * FROM mPagi");
+if (isset($_POST['submit'])) {
+	if($_POST['customRadioInline1'] === "pria") {
+		$hasil = ($_POST['tinggi'] - 100) - (0.15 *($_POST['tinggi'] - 100));
+		if ($_POST['bb'] < $hasil) {
+			echo "<script>const iya = confirm('Berat Badan Kamu Kurang Ideal, apakah Anda Ingin mengikuti diet kami')
+			if(iya) {
+				document.location.href = 'login.php'
 
-?>
-<!DOCTYPE html>
+			}else{
+				document.location.href = 'index.php'				
+			}
+			</script>";
+
+
+		}else if($_POST['bb'] > $hasil){
+
+			echo "<script>const iya = confirm('Berat Badan Kamu berlebihan, apakah Anda Ingin mengikuti diet kami')
+			if(iya) {
+				document.location.href = 'login.php'
+
+			}else{
+				document.location.href = 'index.php'				
+			}
+			</script>";
+
+		}else{
+			echo "<script>const iya = confirm('Berat Badan Kamu  Ideal, apakah Anda Ingin mengikuti diet kami')
+			if(iya) {
+				document.location.href = 'login.php'
+
+			}else{
+				document.location.href = 'index.php'				
+			}
+			</script>";	
+		}
+	}else {
+		if($_POST['customRadioInline1'] === "wanita") {
+		$hasil = ($_POST['tinggi'] - 100) - (0.10 *($_POST['tinggi'] - 100));
+		if ($_POST['bb'] < $hasil) {
+			echo "<script>const iya = confirm('Berat Badan Kamu Kurang Ideal, apakah Anda Ingin mengikuti diet kami')
+			if(iya) {
+				document.location.href = 'login.php'
+
+			}else{
+				document.location.href = 'index.php'				
+			}
+			</script>";
+
+
+		}else if($_POST['bb'] > $hasil){
+
+			echo "<script>const iya = confirm('Berat Badan Kamu berlebihan, apakah Anda Ingin mengikuti diet kami')
+			if(iya) {
+				document.location.href = 'login.php'
+
+			}else{
+				document.location.href = 'index.php'				
+			}
+			</script>";
+
+		}else {
+			echo "<script>const iya = confirm('Berat Badan Kamu  Ideal, apakah Anda Ingin mengikuti diet kami')
+			if(iya) {
+				document.location.href = 'login.php'
+
+			}else{
+				document.location.href = 'index.php'				
+			}
+			</script>";	
+		}
+	}
+	}
+}
+
+ ?>
+
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Document</title>
-    <!--bootstrap-->
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <!---->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <!--Owl Carousel-->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <style type="text/css">
-      .a {
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        display: none;
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <style>
+      .inputan{
+          margin-top:3%;
       }
-    </style>
-</head>
-<body>
+      body{
+          background-color:#7AC53F;
+      }
 
-
-    <nav class="navbar anjing fixed-bottom bg-green navbar-expand">
-        <div class="container">
-          <ul class="navbar-nav nav-justified w-100">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <figure class="figure">
-                  <img src="img/home-512.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Home</figcaption>
-                </figure>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#event" class="nav-link">
-                <figure class="figure">
-                  <img src="image/wedding-day.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Event</figcaption>
-                </figure>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#gallery" class="nav-link">
-                <figure class="figure">
-                  <img src="image/wedding-video.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Gallery</figcaption>
-                </figure>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#story" class="nav-link">
-                <figure class="figure">
-                  <img src="image/conversation.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">asd</figcaption>
-                </figure>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#couple" class="nav-link">
-                <figure class="figure">
-                  <img src="img/weight-scale.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Couple</figcaption>
-                </figure>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-          <h5 class="text-white h4">Collapsed content</h5>
-          <span class="text-muted">Toggleable via the navbar brand.</span>
-        </div>
-      </div>
-      <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
-
-    <section class="jenis-diet">
-      <div class="container">
-        <div class="owl-carousel">
-            <div class="item card bg-dark text-white">
-                <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <h5 class="card-title">Diet Sehat</h5>
-                  <p class="card-text">Tinggi Protein</p>
-                  <p class="card-text">2100 Kalori</p>
-                </div>
-              </div>
-              <div class="item card bg-dark text-white">
-                <img src="img/2.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <h5 class="card-title">OlahRaga</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text">Last updated 3 mins ago</p>
-                </div>
-              </div>
-              <div class="item card bg-dark text-white">
-                <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text">Last updated 3 mins ago</p>
-                </div>
-              </div>
-              <div class="card bg-dark text-white">
-                <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text">Last updated 3 mins ago</p>
-                </div>
-              </div>
-              <div class="card bg-dark text-white">
-                <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text">Last updated 3 mins ago</p>
-                </div>
-              </div>
-              <div class="card bg-dark text-white">
-                <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text">Last updated 3 mins ago</p>
-                </div>
-              </div>
-              <div class="card bg-dark text-white">
-                <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text">Last updated 3 mins ago</p>
-                </div>
-              </div>
-          </div>
-      </div>
-    </section>
-    
-    <div class="container">
-        <hr>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                   
-        <div class="row mt-5">
-            <div class="col-md-12">
-               
-                   <div class="card">
-                    <div class="card-body">
-                      <h4 style="display: inline-block;" class="black">Makan Pagi</h4>
-                      <!-- Button trigger modal -->
-                      <span>
-                        <a href="cari.php?mk=Makan Pagi&id=mpagi">
-                          <button type="button" class="btn btn-hijau tambah" value="Makan Siang">
-                            <i id="icon" class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        </a>
-                    </span>
-                    <hr>
-                    <div class="kalori mt-2">
-                        <p style="display: inline-block;">1200 Kalori</p>
-                        <span>
-                             <button class="btn btn-hijau" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            <i id="icon" class="fa fa-arrow-down" aria-hidden="true"></i>
-                          </button>
-                        </span>
-                    </div>
-                    </div>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-kalori card-body pagi">
-                          <?php foreach($hasil as $p) : ?>
-                            <p><?= $p['makanan']; ?></p>
-                          <?php endforeach; ?>
-                        </div>
-                      </div>
-                  </div>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                      <h4 style="display: inline-block;" class="black">Makan Siang</h4>
-                      <!-- Button trigger modal -->
-                      <span>
-                        <a href="cari.php?mk=Makan Siang&id=mSiang">
-                          <button type="button" class="btn btn-hijau tambah" value="Makan Siang">
-                            <i id="icon" class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        </a>
-                    </span>
-                    <hr>
-                    <div class="kalori mt-2">
-                        <p style="display: inline-block;">1200 Kalori</p>
-                        <span>
-                        <button class="btn btn-hijau" type="button" data-bs-toggle="collapse" data-bs-target="#col" aria-expanded="false" aria-controls="collapseExample">
-                            <i id="icon" class="fa fa-arrow-down" aria-hidden="true"></i>
-                          </button>
-                        </span>
-                    </div>
-                    </div>
-                    <div class="collapse" id="col">
-                        <div class="card card-kalori card-body">
-                          Karbo : 10g, Protein : 20g, Lemak : 10g
-                        </div>
-                      </div>
-                    </div>
-                       <div class="row mt-5">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                      <h4 style="display: inline-block;" class="black">Makan Malam</h4>
-                      <!-- Button trigger modal -->
-                      <span>
-                       <a href="cari.php?mk=Makan Malam&id=mMalam">
-                          <button type="button" class="btn btn-hijau tambah" value="Makan Siang">
-                            <i id="icon" class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        </a>
-                    </span>
-                    <hr>
-                    <div class="kalori mt-2">
-                        <p style="display: inline-block;">1200 Kalori</p>
-                        <span>
-                        <button class="btn btn-hijau" type="button" data-bs-toggle="collapse" data-bs-target="#malam" aria-expanded="false" aria-controls="collapseExample">
-                            <i id="icon" class="fa fa-arrow-down" aria-hidden="true"></i>
-                          </button>
-                        </span>
-                    </div>
-                    </div>
-                    <div class="collapse" id="malam">
-                        <div class="card card-kalori card-body">
-                          Karbo : 10g, Protein : 20g, Lemak : 10g
-                        </div>
-                      </div>
-                  </div>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                      <h4 style="display: inline-block;" class="black">Cemilan</h4>
-                      <!-- Button trigger modal -->
-                      <span>
-                       <a href="cari.php?mk=Cemilan&id=cemilan">
-                          <button type="button" class="btn btn-hijau tambah" value="Makan Siang">
-                            <i id="icon" class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        </a>
-                    </span>
-                    <hr>
-                    <div class="kalori mt-2">
-                        <p style="display: inline-block;">1200 Kalori</p>
-                        <span>
-                        <button class="btn btn-hijau" type="button" data-bs-toggle="collapse" data-bs-target="#cemilan" aria-expanded="false" aria-controls="collapseExample">
-                            <i id="icon" class="fa fa-arrow-down" aria-hidden="true"></i>
-                          </button>
-                        </span>
-                    </div>
-                    </div>
-                    <div class="collapse" id="cemilan">
-                        <div class="card card-kalori card-body">
-                          Karbo : 10g, Protein : 20g, Lemak : 10g
-                        </div>
-                      </div>
-                  </div>
-             
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <form action="" method="post">
-                       <div class="form-group">
-                        
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="cari" placeholder="Cari Makanan">
-                         <button type="submit" name="submit" class="btn btn-hijau mt-2">Cari</button>
-                      </div>
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn button-modal btn-secondary" data-bs-dismiss="modal">Close</button>
-               
-                </div>
-            </div>
-            </div>
-        </div>
-
-</body>
-    <!--bootstrap-->
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <!-- Font Awesome JS -->
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-  <!-- Custom scripts -->
-  <script type="text/javascript"></script>
-  <!--Jquery-->
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <!--Owl Carousel-->
-  <script src="js/owl.carousel.min.js"></script>
-  <script>
-   $('.owl-carousel').owlCarousel({
-    loop:false,
-    margin:10,
-    nav:false,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:5
+      .custom-file-control, .form-control, .is-focused .custom-file-control, .is-focused .form-control {
+        background-image: linear-gradient(0deg,#7AC53F 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);
         }
+
+       
+
+        .btn{
+            color:#fff !important;
+            border-color:#fff !important
+        }
+
+        .form{
+            background-color:#fff;
+            color:#7AC53F;
+            
+        }
+
+        .custom-file-control, .form-control{
+        display:inline-block !important;
+        
     }
-})
 
-
-  </script>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function(){
-        $('.check').on('click', function() {
-            
-            const data = $(this).val()
-
-
-            $.ajax({
-                type: 'POST', 
-                url: 'function.php', 
-                data: {data: data},
-                success: function()
-                {
-                 
-                 alert("data berhasil di input")
-                }
-            });
-        })
-
-
-        $('.tambah').on('click', function(){
-            const val = $(this).val()
-            $('.modal-title').text(val)
-            
-        })
-    })
-  </script>
+        .btn{
+        background-color:#7AC53F !important;
+        color:#fff !important;
+        
+    }
+  </style>
+  <body>
+    
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <h3 class="mb-4" style="color:#fff;">Perhitungan Body Muscle Index</h3>
+                </div>
+                <form class="form" action="" method="post"><br><br>
+                    <div class="container">
+                        <div class="row input-atas">
+                            <div class="col-2">
+                                <label for="input">Tinggi Badan</label>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" name="tinggi" class="form-control" ="Tinggi Badan">
+                            </div>
+                        </div>
+                        <div class="row inputan">
+                            <div class="col-2">
+                                <label for="input">Berat Badan</label>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" name="bb" class="form-control" ="Berat Badan">
+                            </div>
+                        </div>
+                        <div class="row inputan">
+                            <div class="col-2">
+                                <label for="input">Umur</label>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" name="umur" class="form-control" ="Umur">
+                            </div>
+                        </div>
+                        <div class="row inputan">
+                            <div class="col-2">
+                                <label for="input">Jenis Kelamin</label>
+                            </div>
+                            <div class="col-10">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" value="pria">
+                                    <label class="custom-control-label" for="customRadioInline1">Pria</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" value="wanita">
+                                    <label class="custom-control-label" for="customRadioInline2">Wanita</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row inputan">
+                            <div class="col-2">
+                                <label for="input">Tingkat Aktifitas</label>
+                            </div>
+                            <div class="col-5">
+                                    <select class="form-control" id="exampleSelect1">
+                                    <option>Sedentary</option>
+                                    <option>Aktvitas Sedang</option>
+                                    <option>Aktivitas Berat</option>
+                                    <option>Atlet</option>
+                                    </select>
+                            </div>
+                        </div><br>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" name="submit" class="btn btn-outline-success">Submit</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+  </body>
 </html>

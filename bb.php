@@ -1,3 +1,7 @@
+<?php  
+	
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -46,11 +50,11 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <nav class="navbar anjing fixed-bottom bg-green navbar-expand">
+     <nav class="navbar anjing fixed-bottom bg-green navbar-expand">
         <div class="container">
           <ul class="navbar-nav nav-justified w-100">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="makanan.php" class="nav-link">
                 <figure class="figure">
                   <img src="img/home-512.png" class="figure-img img-fluid rounded" alt="...">
                   <figcaption class="figure-caption">Home</figcaption>
@@ -58,91 +62,73 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#event" class="nav-link">
+              <a href="bb.php" class="nav-link">
                 <figure class="figure">
-                  <img src="image/wedding-day.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Event</figcaption>
+                 <i class="fa fa-balance-scale fa-2x text-white" aria-hidden="true"></i>
+                  <figcaption class="figure-caption">Berat Badan</figcaption>
                 </figure>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#gallery" class="nav-link">
+              <a href="logout.php" class="nav-link">
                 <figure class="figure">
-                  <img src="image/wedding-video.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Gallery</figcaption>
+                  <i class="fa fa-sign-out fa-2x text-white" aria-hidden="true"></i>
+                  <figcaption class="figure-caption">Log Out</figcaption>
                 </figure>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="#story" class="nav-link">
-                <figure class="figure">
-                  <img src="image/conversation.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">asd</figcaption>
-                </figure>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#couple" class="nav-link">
-                <figure class="figure">
-                  <img src="img/weight-scale.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Couple</figcaption>
-                </figure>
-              </a>
-            </li>
+           
           </ul>
         </div>
-    </nav>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="text-center">
-                    <h1>Berat Badan Saat Ini</h1>
-                    <h3>$beratbadan</h3>
-                    <hr>
-                </div>
-            </div>
-        </div><br>
-        <div class="row">
-            <div class="col-4 text-center">
-                <h6>Berat Badan Awal</h6>
-                <h6>$bbawal</h6>
-                <hr>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Masukkan Berat Badan</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"><br>
-                    <button type="button" class="btn btn-outline-primary">Simpan</button>
-                </div>
-            </div>
-            <div class="col-4 text-center">
-                <h6>Tujuan Berat Badan</h6>
-                <h6>$bbakhir</h6>
-                <hr>
-            </div>
-        </div>
+      </nav>
 
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+          <h5 class="text-white h4">Collapsed content</h5>
+          <span class="text-muted">Toggleable via the navbar brand.</span>
+        </div>
+      </div>
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+    <form action="" method="post" action="">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <div class="text-center">
+                      <h1>Berat Badan Saat Ini</h1>
+                    
+                  </div>
+              </div>
+          </div><br>
+          <div class="row">
+              <div class="col-4 text-center">
+                  <h6>Berat Badan Awal</h6>
+                  <h6><input type="text" name="bbAwal" class="form-control bba" id="exampleInputEmail1" aria-describedby="emailHelp"></h6>
+                  <hr>
+              </div>
+              <div class="col-4">
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Masukkan Berat Badan</label>
+                      <input type="text" name="bb" class="form-control bb" id="exampleInputEmail1" aria-describedby="emailHelp"><br>
+                      <button type="button" name="submit" class="btn btn-outline-primary submit">Simpan</button>
+                  </div>
+              </div>
+              <div class="col-4 text-center">
+                  <h6>Tujuan Berat Badan</h6>
+                  <h6><input type="text" class="form-control tbb" id="exampleInputEmail1" aria-describedby="emailHelp" name="tujuanbb"><br></h6>
+                  <hr>
+              </div>
+          </div>
+        </form>
         <canvas id="myChart"></canvas><br><br><br><br><br><br>
-        <div class="row">
-            <div class="col-4">
-                <p class="kiri">$tanggalinputbb </p>
-                <p class="kiri">$tanggalinputbb </p>
-                <p class="kiri">$tanggalinputbb </p>
-                <p class="kiri">$tanggalinputbb </p>
-            </div>
-            <div class="col-4">
-
-            </div>
-            <div class="col-4 text-kanan">
-                <p class="kanan">$bb yg di input</p>
-                <p class="kanan">$bb yg di input</p>
-                <p class="kanan">$bb yg di input</p>
-                <p class="kanan">$bb yg di input</p>
-            </div>
-        </div>
         
-    </div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -152,25 +138,38 @@
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
-            var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
+    	$(document).ready(function() {
+    		$('.submit').on('click', function() {
+    			const bb = $('.bb').val();
+    			const bba = $('.bba').val();
+    			const tbb = $('.tbb').val();
+
+    			var ctx = document.getElementById('myChart').getContext('2d');
+    			var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
 
         // The data for our dataset
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['Berat Badan Awal','Berat Badan Saat Ini'],
             datasets: [{
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: [bba,bb,tbb]
             }]
         },
 
         // Configuration options go here
         options: {}
     });
+
+    		})
+    	})
+    	
+
+
+            
     </script>
   </body>
 </html>

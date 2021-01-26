@@ -1,9 +1,18 @@
-<?php  
-session_start();
+<?php
+session_start();  
+if (!$_SESSION['id']) {
+  header('Location: index.php');
+}
 require 'function.php';
+$id = $_SESSION['id'];
 
-$m = $_GET['mk'];
-$key = $_GET['id'];
+
+$hasil = tampil("SELECT * FROM mPagi WHERE id_user = $id");
+$siang = tampil("SELECT * FROM msiang WHERE id_user = $id");
+$malam = tampil("SELECT * FROM mMalam WHERE id_user = $id");
+$cemilan = tampil("SELECT * FROM cemilan WHERE id_user = $id");
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +27,7 @@ $key = $_GET['id'];
     <!---->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link rel="stylesheet" href="font/css/font-awesome.min.css">
     <!--Owl Carousel-->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
@@ -35,7 +45,7 @@ $key = $_GET['id'];
         <div class="container">
           <ul class="navbar-nav nav-justified w-100">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="makanan.php" class="nav-link">
                 <figure class="figure">
                   <img src="img/home-512.png" class="figure-img img-fluid rounded" alt="...">
                   <figcaption class="figure-caption">Home</figcaption>
@@ -43,37 +53,22 @@ $key = $_GET['id'];
               </a>
             </li>
             <li class="nav-item">
-              <a href="#event" class="nav-link">
+              <a href="bb.php" class="nav-link">
                 <figure class="figure">
-                  <img src="image/wedding-day.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Event</figcaption>
+                 <i class="fa fa-balance-scale fa-2x text-white" aria-hidden="true"></i>
+                  <figcaption class="figure-caption">Berat Badan</figcaption>
                 </figure>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#gallery" class="nav-link">
+              <a href="logout.php" class="nav-link">
                 <figure class="figure">
-                  <img src="image/wedding-video.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Gallery</figcaption>
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  <figcaption class="figure-caption">Log Out</figcaption>
                 </figure>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="#story" class="nav-link">
-                <figure class="figure">
-                  <img src="image/conversation.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">asd</figcaption>
-                </figure>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#couple" class="nav-link">
-                <figure class="figure">
-                  <img src="img/weight-scale.png" class="figure-img img-fluid rounded" alt="...">
-                  <figcaption class="figure-caption">Couple</figcaption>
-                </figure>
-              </a>
-            </li>
+           
           </ul>
         </div>
       </nav>
@@ -107,15 +102,15 @@ $key = $_GET['id'];
                 <img src="img/2.jpg" class="card-img" alt="...">
                 <div class="card-img-overlay">
                   <h5 class="card-title">OlahRaga</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">Cukup olahraga sehari selama 30 menit dapat menjaga tubuh ideal dan menurunkan berat badan</p>
                   <p class="card-text">Last updated 3 mins ago</p>
                 </div>
               </div>
               <div class="item card bg-dark text-white">
                 <img src="img/carousel-image-1.jpg" class="card-img" alt="...">
                 <div class="card-img-overlay">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <h5 class="card-title">Info</h5>
+                  <p class="card-text">Hindari memakan ber karbohidrat berlebihan Saat diet karna dapat membantu proses diet</p>
                   <p class="card-text">Last updated 3 mins ago</p>
                 </div>
               </div>
@@ -160,41 +155,167 @@ $key = $_GET['id'];
     </div>
     <div class="container">
         <div class="row">
-        	<h1 class="text-center mb-3"><?= $m; ?></h1>
-        <div class="col-md-8">
-           <form action="" method="post">
-           	 <input class="form-control mr-sm-2" type="search" placeholder="Cari Makanan" aria-label="Search" name="cari">
-    		<button class="btn btn-outline-success my-2 my-sm-0 mt-2" type="submit" name="submit">Search</button>    
-           </form>   
+            <div class="col-md-12">
+                   
         <div class="row mt-5">
             <div class="col-md-12">
-               <?php if(isset($_POST['submit'])): ?>
-             
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">No</th>
-                          <th scope="col">Menu</th>
-                          <th scope="col">Kalori</th>
-                          <th scope="col">Tambah</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i= 1; ?>
-                        <div class="a"><?php foreach(getCari($_POST{'cari'}) as $c) : ?></div>
-                        <tr>
-                          <th scope="row"><?= $i; ?></th>
-                         <td><?= $c['fields']['item_name']; ?></td>
-                         <td><?= $c['fields']['nf_calories']; ?> kal</td>
-                         <td> <input type="checkbox" class="check" aria-label="Checkbox for following text input" value="<?= $c['fields']['item_name']; ?>" data-id="<?= $key; ?>" data-nama="<?= $_SESSION['id']; ?>" data-kal="<?= $c['fields']['nf_calories']; ?>"></td>
-                        </tr>
-                        <?php $i++; ?>
-                      <?php endforeach; ?>
-                      </tbody>
-                    </table>
-              <?php endif; ?>
+               
+                   <div class="card">
+                    <div class="card-body">
+                      <?php $total = 0;
+                            $jum = 1200;
+                          foreach ($hasil as $h) {
+                              $total += $h['kal'];
+                          }
+                          $kalori = $jum - $total;
+                       ?>
+                      <h4 style="display: inline-block;" class="black">Makan Pagi</h4>
+                      <!-- Button trigger modal -->
+                      <span>
+                        <a href="cari.php?mk=Makan Pagi&id=mpagi">
+                          <button type="button" class="btn btn-hijau tambah" value="Makan Siang">
+                            <i id="icon" class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                        </a>
+                    </span>
+                    <hr>
+                    <div class="kalori mt-2">
+                        <p style="display: inline-block;"><?= $kalori; ?> Kalori</p>
+                        <span>
+                             <button class="btn btn-hijau" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i id="icon" class="fa fa-arrow-down" aria-hidden="true"></i>
+                          </button>
+                        </span>
+                    </div>
+                    </div>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-kalori card-body pagi">
+                          <?php foreach($hasil as $p) : ?>
+                            <p><?= $p['makanan']; ?></p>
+                          <?php endforeach; ?>
+                        </div>
+                      </div>
+                  </div>
             </div>
-                    <a href="makanan.php"><button type="button" class="btn btn-success">Kembali</button></a>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                       <?php $total = 0;
+                            $jum = 1200;
+                          foreach ($siang as $h) {
+                              $total += $h['kal'];
+                          }
+                          $kalori = $jum - $total;
+                       ?>
+                      <h4 style="display: inline-block;" class="black">Makan Siang</h4>
+                      <!-- Button trigger modal -->
+                      <span>
+                        <a href="cari.php?mk=Makan Siang&id=mSiang">
+                          <button type="button" class="btn btn-hijau tambah" value="Makan Siang">
+                            <i id="icon" class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                        </a>
+                    </span>
+                    <hr>
+                    <div class="kalori mt-2">
+                        <p style="display: inline-block;"><?= $kalori; ?> Kalori</p>
+                        <span>
+                        <button class="btn btn-hijau" type="button" data-bs-toggle="collapse" data-bs-target="#col" aria-expanded="false" aria-controls="collapseExample">
+                            <i id="icon" class="fa fa-arrow-down" aria-hidden="true"></i>
+                          </button>
+                        </span>
+                    </div>
+                    </div>
+                    <div class="collapse" id="col">
+                        <div class="card card-kalori card-body">
+                          <?php foreach($siang as $s) : ?>
+                              <p><?= $s['makanan']; ?>p</p>
+                          <?php endforeach;  ?>
+                        </div>
+                      </div>
+                    </div>
+                       <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                      <h4 style="display: inline-block;" class="black">Makan Malam</h4>
+                      <!-- Button trigger modal -->
+                      <span>
+                       <a href="cari.php?mk=Makan Malam&id=mMalam">
+                          <button type="button" class="btn btn-hijau tambah" value="Makan Siang">
+                            <i id="icon" class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                        </a>
+                    </span>
+                    <hr>
+                    <div class="kalori mt-2">
+                       <?php $total = 0;
+                            $jum = 1200;
+                          foreach ($malam as $h) {
+                              $total += $h['kal'];
+                          }
+                          $kalori = $jum - $total;
+                       ?>
+                        <p style="display: inline-block;"><?= $kalori; ?> Kalori</p>
+                        <span>
+                        <button class="btn btn-hijau" type="button" data-bs-toggle="collapse" data-bs-target="#malam" aria-expanded="false" aria-controls="collapseExample">
+                            <i id="icon" class="fa fa-arrow-down" aria-hidden="true"></i>
+                          </button>
+                        </span>
+                    </div>
+                    </div>
+                    <div class="collapse" id="malam">
+                        <div class="card card-kalori card-body">
+                         <?php foreach($malam as $m) : ?>
+                              <p><?= $m['makanan']; ?>p</p>
+                          <?php endforeach;  ?>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                      <h4 style="display: inline-block;" class="black">Cemilan</h4>
+                      <!-- Button trigger modal -->
+                      <span>
+                       <a href="cari.php?mk=Cemilan&id=cemilan">
+                          <button type="button" class="btn btn-hijau tambah" value="Makan Siang">
+                            <i id="icon" class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                        </a>
+                    </span>
+                    <hr>
+                    <div class="kalori mt-2">
+                       <?php $total = 0;
+                            $jum = 1200;
+                          foreach ($cemilan as $h) {
+                              $total += $h['kal'];
+                          }
+                          $kalori = $jum - $total;
+                       ?>
+                        <p style="display: inline-block;"><?= $kalori; ?> Kalori</p>
+                        <span>
+                        <button class="btn btn-hijau" type="button" data-bs-toggle="collapse" data-bs-target="#cemilan" aria-expanded="false" aria-controls="collapseExample">
+                            <i id="icon" class="fa fa-arrow-down" aria-hidden="true"></i>
+                          </button>
+                        </span>
+                    </div>
+                    </div>
+                    <div class="collapse" id="cemilan">
+                        <div class="card card-kalori card-body">
+                        <?php foreach($cemilan as $c) : ?>
+                              <p><?= $c['makanan']; ?>p</p>
+                          <?php endforeach;  ?>
+                        </div>
+                      </div>
+                  </div>
+             
+            </div>
         </div>
     </div>
     <!-- Modal -->
@@ -263,18 +384,12 @@ $key = $_GET['id'];
         $('.check').on('click', function() {
             
             const data = $(this).val()
-            const key = $(this).data('id')
-            const nama = $(this).data('nama')
-            const kal = $(this).data('kal')
+
+
             $.ajax({
                 type: 'POST', 
                 url: 'function.php', 
-                data: {
-                	'data': data,
-                	'key': key,
-                  'nama' : nama,
-                  'kal' : kal
-                },
+                data: {data: data},
                 success: function()
                 {
                  

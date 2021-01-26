@@ -1,4 +1,5 @@
 <?php 
+
 $conn = mysqli_connect("localhost","root","","diet");
 
 if (!$conn) {
@@ -46,8 +47,10 @@ if(isset($_POST['data'])) {
 	
 	$data = $_POST['data'];
 	$key = $_POST['key'];
+	$nama = $_POST['nama'];
+	$kal = $_POST['kal'];
 	$conn = mysqli_connect("localhost","root","","diet");
- 	$query = "INSERT INTO $key VALUES ('','$data')";
+ 	$query = "INSERT INTO $key VALUES ('','$nama','$data','$kal')";
  	$result = mysqli_query($conn, $query);
  	echo 'Data Berhasil Ditambah';
 }
@@ -63,5 +66,22 @@ function tampil($query) {
 
 	return $rows;
 }
+
+function registrasi($data) {
+	global $conn;
+	$nama = $_POST['nama'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+
+	$query = "INSERT INTO user VALUES ('','$nama','$email','$password')";
+	mysqli_query($conn, $query);
+
+	return mysqli_affected_rows($conn);
+
+
+
+
+}
+
 
 ?>
